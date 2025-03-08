@@ -20,7 +20,7 @@ const (
 	// the descriptor, but the libusb documentation says packets can be up
 	// to 512 bytes.
 	// Ref: https://libusb.sourceforge.io/api-1.0/libusb_packetoverflow.html
-	maxPacketSize   = 512
+	maxPacketSize = 512
 
 	usbtmcHeaderLen = 12
 )
@@ -129,7 +129,7 @@ func (d *Device) doRead(p []byte, useTermChar bool) (n int, err error) {
 		}
 	}
 
-	return pos, nil
+	return min(pos, transfer), nil
 }
 
 // Read reads from the device respecting the termChar setting. Use for transfers
